@@ -1,4 +1,4 @@
-module github.com/ktslabbie/simpletest/v2
+module github.com/ktslabbie/simpletest
 
 go 1.13
 
