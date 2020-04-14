@@ -70,7 +70,7 @@ type (
 	Cases map[string]Case
 )
 
-// Run executes input test.Cases in a random order (see RunSingle).
+// Run executes input Cases in a random order (see RunSingle).
 // It returns false if any one test case failed, true otherwise.
 func Run(t *testing.T, testCases Cases, f func(tc *Case) (interface{}, error)) bool {
 	success := true
@@ -116,7 +116,7 @@ func execute(testCase Case, f func(*Case) (interface{}, error)) (err error) {
 	return compare(testCase, got)
 }
 
-// compare compares the wanted output defined in the test.Case with the actual output,
+// compare compares the wanted output defined in the Case with the actual output,
 // returning an error if there is no match.
 func compare(testCase Case, got interface{}) error {
 	if areBothNil(testCase.Want, got) {
@@ -164,7 +164,7 @@ func areEqualZeroLengthSlices(a interface{}, b interface{}) bool {
 }
 
 // handleError will check if the error thrown by a test was expected,
-// and whether the error message contains the expected Error phrase defined in the test.Case.
+// and whether the error message contains the expected Error phrase defined in the Case.
 func handleError(testCase Case, err error) error {
 	if len(testCase.Error) == 0 {
 		return errors.Errorf(UnexpectedErrorTemplate, testCase.Receiver, testCase.Input, testCase.Want, err)
